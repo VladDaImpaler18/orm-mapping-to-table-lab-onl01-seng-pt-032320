@@ -30,9 +30,10 @@ class Student
   end
 
   def save
+    #binding.pry
     sql_command = <<-SQL
-    INSERT INTO students (name, grade) VALUES (#{self.name}, #{self.grade});
+    INSERT INTO students (name, grade) VALUES (?, ?);
     SQL
-    DB[:conn].execute(sql_command)
+    DB[:conn].execute(sql_command, self.name, self.grade)
   end
 end
