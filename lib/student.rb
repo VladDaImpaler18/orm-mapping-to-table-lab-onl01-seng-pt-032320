@@ -34,12 +34,10 @@ class Student
     INSERT INTO students (name, grade) VALUES (?, ?);
     SQL
     DB[:conn].execute(sql_command, self.name, self.grade)
-    binding.pry
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
   end
 
   def self.create(name:, grade:)
-    #binding.pry
     #{:name=>"Sally", :grade=>"10th"}
     student = Student.new(name, grade)
     student.save
